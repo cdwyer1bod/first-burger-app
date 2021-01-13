@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Recipes = ( {item} ) => {
   console.log({item})
+
+  const [showResults, setShowResults] = useState(false)
+  const onClick = () => setShowResults(!showResults)
+
   return(
     <div>
       <h4> {item.meal} </h4>
-      <ul>
-        {item.ingredients.map(ingredient =>
-          <li key={ingredient.id}> {ingredient.name}: ${twoDP(ingredient.price)} </li>
-        )}
-      </ul>
-      <SumCost ingredients={item.ingredients} />
+      <input type="submit" value="Reveal Ingredients" onClick={onClick} />
+      { showResults ?
+        <div>
+        <ul>
+          {item.ingredients.map(ingredient =>
+            <li key={ingredient.id}> {ingredient.name}: ${twoDP(ingredient.price)} </li>
+          )}
+        </ul>
+        <SumCost ingredients={item.ingredients} /> </div>
+      : null }
     </div>
   )
 }
