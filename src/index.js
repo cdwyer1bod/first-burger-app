@@ -4,8 +4,6 @@ import Recipes from './Recipes'
 
 const twoDP = (num) => (Math.round(num * 100) / 100).toFixed(2)
 
-
-
 const App = () => {
 
   const [items, setItems] = useState([
