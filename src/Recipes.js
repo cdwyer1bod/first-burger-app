@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Recipes = ( {item} ) => {
-  console.log({item})
+
+  const [showResults, setShowResults] = useState(false)
+  const onClick = () => setShowResults(!showResults)
+
   return(
     <div>
       <h4> {item.meal} </h4>
-<<<<<<< HEAD
       <input type="submit" value="Reveal Ingredients" onClick={onClick} />
       { showResults ?
         <div>
@@ -16,14 +18,6 @@ const Recipes = ( {item} ) => {
         </ul>
         <SumCost ingredients={item.ingredients} /> </div>
       : null }
-=======
-      <ul>
-        {item.ingredients.map(ingredient =>
-          <li key={ingredient.id}> {ingredient.name}: ${twoDP(ingredient.cost)} </li>
-        )}
-      </ul>
-      <SumCost ingredients={item.ingredients} />
->>>>>>> origin/gabe-branch
     </div>
   )
 }

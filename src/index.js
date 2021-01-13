@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Recipes from './Recipes'
 
-const twoDP = (num) => (Math.round(num * 100) / 100).toFixed(2)
 
 const App = () => {
 
