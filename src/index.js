@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+const App = () => {
+  const [items, setItems] = useState([
+    { id: 1, ingredient: 'Cheese', price: '$1.50' },
+    { id: 2, ingredient: 'Tomato', price: '$1.00' },
+    { id: 3, ingredient: 'Onion', price: '$0.75' },
+    { id: 4, ingredient: 'Beef Patty', price: '$3.50' }
+  ])
+
+  const itemList = items.map(item => <li key={item.id}> {item.ingredient} {item.price} </li>)
+
+  return(
+    <div>
+      <h2> Joe's Burgers </h2>
+      <div> {itemList} </div>
+    </div>
+  )
+}
+
+
+ReactDOM.render(<App />,
   document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+)
