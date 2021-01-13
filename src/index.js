@@ -28,7 +28,8 @@ const App = () => {
 		event.preventDefault()
 		const itemObject = {
 			id: items.length +1,
-			content: newItem,
+			meal: newItem,
+			ingredients: []
 
 		}
 		setItems(items.concat(itemObject))
