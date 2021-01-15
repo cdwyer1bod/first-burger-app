@@ -7,17 +7,17 @@ const App = () => {
 
   const [items, setItems] = useState([
     {id: 1, meal: 'Beef Burger', ingredients: [
-        { id: 1, name: 'Cheese', cost: 1.50 },
-        { id: 2, name: 'Tomato', cost: 1.00 },
-        { id: 3, name: 'Onion', cost: 0.75 },
-        { id: 4, name: 'Beef Patty', cost: 3.75 }
+        { id: 1, name: 'Cheese', quantity:1, cost: 1.50 },
+        { id: 2, name: 'Tomato', quantity:1, cost: 1.00 },
+        { id: 3, name: 'Onion', quantity:1, cost: 0.75 },
+        { id: 4, name: 'Beef Patty', quantity:1, cost: 3.75 }
       ]
     },
     {id: 2, meal: 'Cheese Burger', ingredients: [
-        { id: 1, name: 'Cheese', cost: 1.50 },
-        { id: 2, name: 'Tomato', cost: 1.00 },
-        { id: 3, name: 'Onion', cost: 0.75 },
-        { id: 4, name: 'Beef Patty', cost: 3.75 }
+        { id: 1, name: 'Cheese', quantity:1, cost: 1.50 },
+        { id: 2, name: 'Tomato', quantity:1, cost: 1.00 },
+        { id: 3, name: 'Onion', quantity:1, cost: 0.75 },
+        { id: 4, name: 'Beef Patty', quantity:1, cost: 3.75 }
       ]
     }
   ])
