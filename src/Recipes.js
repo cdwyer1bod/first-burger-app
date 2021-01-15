@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import AddToIngredients from './AddToIngredients'
+import DestroyIngredients from './DestroyIngredients'
 
 const Recipes = ( { item, items, setItems } ) => {
 
@@ -18,10 +19,15 @@ const Recipes = ( { item, items, setItems } ) => {
       <input type="submit" value="Reveal Ingredients" onClick={onClick} />
       { showResults ?
         <div>
-        <AddToIngredients ingredients={item.ingredients} id={item.id} items={items} setItems={setItems} forceUpdate={forceUpdate} />
+        <AddToIngredients ingredients={item.ingredients} id={item.id} items={items}
+                          setItems={setItems} forceUpdate={forceUpdate} />
         <ul>
           {item.ingredients.map(ingredient => { return(
-            <li key={ingredient.id}> {ingredient.name}: ${twoDP(ingredient.cost)} </li>
+            <li key={ingredient.id}>
+              {<DestroyIngredients ingredients={item.ingredients} id={item.id} items={items}
+              setItems={setItems} forceUpdate={forceUpdate} ingr_id={ingredient.id}/>}
+              {ingredient.name}: ${twoDP(ingredient.cost)}
+            </li>
           )}
           )}
         </ul>
