@@ -21,6 +21,7 @@ const App = () => {
       ]
     }
   ])
+
   const [newItem, setNewItem] = useState('')
 
 	const addItem = (event) => {
@@ -29,7 +30,6 @@ const App = () => {
 			id: items.length +1,
 			meal: newItem,
 			ingredients: []
-
 		}
 		setItems(items.concat(itemObject))
 		setNewItem('')
@@ -39,10 +39,16 @@ const App = () => {
 		console.log(event.target.value)
 		setNewItem(event.target.value)
 	}
+
   return(
     <div>
       <h2> Joe's Burger Joint </h2>
-      {items.map(item => <Recipes key={item.id} item={item} />)}
+      {items.map(item => {
+        return(
+          <div>
+            <Recipes key={item.id} item={item} items={items} setItems={setItems} />
+          </div>
+        )})}
 	  <form onSubmit={addItem}>
 	  	<label>Meal Name</label>
 	  	<input
