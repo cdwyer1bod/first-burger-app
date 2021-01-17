@@ -45,11 +45,9 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
 
 	  forceUpdate()
 
-
 	  console.log(updatedIngredientObject)
 	  console.log("Ingredient selected: ",ingredients[id+1])
 	  console.log(items)
-
 
   }
 
