@@ -4,9 +4,9 @@ import React, {useState} from 'react';
 const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => {
 
   const [ newIngredientName, setNewIngredientName ] = useState('')
-  const [ newIngredientCost, setNewIngredientCost ] = useState(0)
+  const [ newIngredientCost, setNewIngredientCost ] = useState('')
   const [ updatedIngredientName, setUpdatedIngredientName ] = useState('')
-  const [ updatedIngredientCost, setUpdatedIngredientCost ] = useState(0)
+  const [ updatedIngredientCost, setUpdatedIngredientCost ] = useState('')
 
 
   const addIngredient = (event) => {
@@ -32,6 +32,7 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
   const updateIngredientCost = (event) => {
 	  event.preventDefault()
 	  console.log("ID SELECTED", ingredients.filter(ingredient => ingredient.name === updatedIngredientName)[0].id)
+	  var id_selected = ingredients.filter(ingredient => ingredient.name === updatedIngredientName)[0].id
 	  const updatedIngredientObject = {
 		  id: ingredients.filter(ingredient => ingredient.name === updatedIngredientName)[0].id,
 		  name: updatedIngredientName,
@@ -41,13 +42,13 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
 	  setUpdatedIngredientName('')
 	  setUpdatedIngredientCost('')
 
-	  ingredients[id+1].cost = updatedIngredientObject.cost
+	  ingredients[id_selected-1].cost = updatedIngredientObject.cost
 
 	  forceUpdate()
 
 
 	  console.log(updatedIngredientObject)
-	  console.log("Ingredient selected: ",ingredients[id+1])
+	  console.log("Ingredient selected: ",ingredients[id_selected-1])
 	  console.log(items)
 
 
