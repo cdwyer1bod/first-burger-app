@@ -17,13 +17,14 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
       cost: newIngredientCost,
       quantity: newIngredientQuantity
     }
-
+    console.log(`http://localhost:3001/restaurant/${id}`)
     items[id-1].ingredients = items[id-1].ingredients.concat(newIngredientObject)
     setItems(items)
     setNewIngredientName('')
 	  setNewIngredientCost('')
     setNewIngredientQuantity('')
     forceUpdate()
+
   }
 
 

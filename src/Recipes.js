@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import AddToIngredients from './AddToIngredients'
 import DestroyIngredients from './DestroyIngredients'
+import DestroyItem from './DestroyItem'
 
 const Recipes = ( { item, items, setItems } ) => {
 
@@ -33,7 +34,7 @@ const Recipes = ( { item, items, setItems } ) => {
 
   return(
     <div>
-      <h4> {item.meal} </h4>
+      <h4> <DestroyItem item_id={item.id} items={items} setItems={setItems} forceUpdate={forceUpdate} /> {item.meal} </h4>
   	  <p> Price: ${twoDP(item.price)} </p>
     	  <form onSubmit={updateItemPrice}>
     	  	<label>Update Item Price</label>
@@ -73,16 +74,16 @@ const Recipes = ( { item, items, setItems } ) => {
 const twoDP = (num) => (Math.round(num * 100) / 100).toFixed(2)
 
 const ProfitMargin = ({item, ingredients}) => {
-	const cost = ingredients.reduce((accumulator, ingredient) => {
-      return(accumulator + ingredient.cost)
+	var cost = ingredients.reduce((accumulator, ingredient) => {
+      return(accumulator + Number(ingredient.cost))
     },0)
 	var price= item.price
 	return <p>Profit Margin: ${twoDP(price-cost)}</p>
 }
 
 const SumCost = ( {ingredients } ) => {
-  const total = ingredients.reduce((accumulator, ingredient) => {
-    return(accumulator + ingredient.cost)
+  var total = ingredients.reduce((accumulator, ingredient) => {
+    return(accumulator + Number(ingredient.cost))
   },0)
   return <p> Total cost of ingredients: ${twoDP(total)}</p>
 }

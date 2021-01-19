@@ -1,28 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Recipes from './Recipes'
-
+import restaurantService from './services'
+import axios from 'axios'
 
 const App = () => {
 
-  const [items, setItems] = useState([
-    {id: 1, meal: 'Beef Burger', price: 10, ingredients: [
-        { id: 1, name: 'Cheese', cost: 1.50, quantity: 1 },
-        { id: 2, name: 'Tomato', cost: 1.00, quantity: 1 },
-        { id: 3, name: 'Onion', cost: 0.75, quantity: 1 },
-        { id: 4, name: 'Beef Patty', cost: 3.75, quantity: 1 }
-      ]
-    },
-    {id: 2, meal: 'Cheese Burger', price: 12, ingredients: [
-        { id: 1, name: 'Cheese', cost: 1.50, quantity: 1 },
-        { id: 2, name: 'Tomato', cost: 1.00, quantity: 1 },
-        { id: 3, name: 'Onion', cost: 0.75, quantity: 1 },
-        { id: 4, name: 'Beef Patty', cost: 3.75, quantity: 1 }
-      ]
-    }
-  ])
+  const [items, setItems] = useState([])
   const [newItemName, setNewItemName] = useState('')
   const [newItemPrice, setNewItemPrice] = useState('')
+
+  useEffect(() => {
+    const dataHook = () => {
+      restaurantService.getAll().then(initialItems => setItems(initialItems))
+    }
+
+    dataHook()
+
+    }, []);
 
 	const addItem = (event) => {
 		event.preventDefault()
@@ -32,9 +27,14 @@ const App = () => {
 			meal: newItemName,
 			ingredients: []
 		}
-		setItems(items.concat(itemObject))
-		setNewItemName('')
-		setNewItemPrice('')
+
+    axios
+      .post('http://localhost:3001/restaurant', itemObject)
+      .then(response => {
+        setItems(items.concat(response.data))
+    		setNewItemName('')
+    		setNewItemPrice('')
+      })
 	}
 
 	const handleItemNameChange = (event) => setNewItemName(event.target.value)
