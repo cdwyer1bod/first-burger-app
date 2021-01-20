@@ -10,6 +10,7 @@ const DestroyItem = ( {item_id, items, setItems, forceUpdate} ) => {
       var copy_data = items
       copy_data = copy_data.filter(i => i.id !== item_id)
       console.log(copy_data)
+
       setItems(copy_data)
       forceUpdate()
     }

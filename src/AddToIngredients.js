@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import restaurantService from './services'
 
 const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => {
 
@@ -17,13 +18,23 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
       cost: newIngredientCost,
       quantity: newIngredientQuantity
     }
-    console.log(`http://localhost:3001/restaurant/${id}`)
-    items[id-1].ingredients = items[id-1].ingredients.concat(newIngredientObject)
-    setItems(items)
-    setNewIngredientName('')
-	  setNewIngredientCost('')
-    setNewIngredientQuantity('')
-    forceUpdate()
+
+    const addIngredientHook = () => {
+      restaurantService
+        .createIngredientItem(id, newIngredientObject)
+        .then(
+          newIngredient => {
+            items[id-1].ingredients = items[id-1].ingredients.concat(newIngredient)
+            setItems(items)
+            setNewIngredientName('')
+        	  setNewIngredientCost('')
+            setNewIngredientQuantity('')
+            forceUpdate()
+          }
+        )
+    }
+
+    addIngredientHook()
 
   }
 

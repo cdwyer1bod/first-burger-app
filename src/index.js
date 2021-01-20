@@ -14,10 +14,11 @@ const App = () => {
     const dataHook = () => {
       restaurantService.getAll().then(initialItems => setItems(initialItems))
     }
-
+    var x = axios.post('http://localhost:3001/restaurant/1').then(response=>response.data.ingredients)
+    console.log(x)
     dataHook()
 
-    }, []);
+  }, []);
 
 	const addItem = (event) => {
 		event.preventDefault()
@@ -28,13 +29,17 @@ const App = () => {
 			ingredients: []
 		}
 
-    axios
-      .post('http://localhost:3001/restaurant', itemObject)
-      .then(response => {
-        setItems(items.concat(response.data))
-    		setNewItemName('')
-    		setNewItemPrice('')
-      })
+    const itemAdd = () => {
+      restaurantService.createMenuItem(itemObject).then(
+        newItem => {
+          setItems(items.concat(newItem))
+          setNewItemName('')
+          setNewItemPrice('')
+        }
+      )
+    }
+    itemAdd()
+
 	}
 
 	const handleItemNameChange = (event) => setNewItemName(event.target.value)

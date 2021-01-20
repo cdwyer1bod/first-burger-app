@@ -1,0 +1,72 @@
+{
+  "restaurant": [
+    {
+      "id": 1,
+      "meal": "Beef Burger",
+      "price": 10,
+      "ingredients": [
+        {
+          "id": 1,
+          "name": "Cheese",
+          "cost": 1.5,
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "name": "Tomato",
+          "cost": 1,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "Onion",
+          "cost": 0.75,
+          "quantity": 1
+        },
+        {
+          "id": 4,
+          "name": "Beef Patty",
+          "cost": 3.75,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "meal": "Cheese Burger",
+      "price": 12,
+      "ingredients": [
+        {
+          "id": 1,
+          "name": "Cheese",
+          "cost": 1.5,
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "name": "Tomato",
+          "cost": 1,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "Onion",
+          "cost": 0.75,
+          "quantity": 1
+        },
+        {
+          "id": 4,
+          "name": "Beef Patty",
+          "cost": 3.75,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "price": "14",
+      "meal": "Reuben Sandwich",
+      "ingredients": []
+    }
+  ]
+}
