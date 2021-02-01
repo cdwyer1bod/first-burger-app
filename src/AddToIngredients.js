@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import restaurantService from './services'
-import axios from 'axios'
 
 const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => {
 
@@ -20,24 +19,23 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
       quantity: newIngredientQuantity
     }
 
-    const ingredientPatch = (ingredientList, newIngredient) => ingredientList.concat(newIngredient)
-
-    const baseUrl = 'http://localhost:3001/restaurant'
-    const mealUrl = `${baseUrl}/${id}`
-
-    axios
-      .patch(mealUrl, {ingredients:ingredientPatch(items[id-1].ingredients, newIngredientObject)})
-      .then(response => {
-        console.log(response)
-        const ing_array = response.data.ingredients
-        items[id-1].ingredients = items[id-1].ingredients.concat(ing_array[ing_array.length - 1])
+    const ingredientAdd = () => {
+      restaurantService.createIngredientItem(id, newIngredientObject, items)
+      .then(newIngredientList => {
+        console.log(newIngredientList)
+        const newIngredient = newIngredientList[newIngredientList.length - 1]
+        items[id-1].ingredients = items[id-1].ingredients.concat(newIngredient)
         setItems(items)
         setNewIngredientName('')
     	  setNewIngredientCost('')
         setNewIngredientQuantity('')
         forceUpdate()
-        })
-        .catch(error => {console.log(error)})
+      })
+      .catch(error => {console.log(error)})
+    }
+
+    ingredientAdd()
+
   }
 
 

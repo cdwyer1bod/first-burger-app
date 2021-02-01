@@ -13,10 +13,14 @@ const createMenuItem = (newObject) => {
   return response.then(response => response.data)
 }
 
-const createIngredientItem = (id, newObject) => {
-  const response = axios.post(`${baseUrl}/${id}`, newObject)
+const createIngredientItem = (id, newObject, items) => {
+
+  const ingredientPatch = (ingredientList, newObject) => ingredientList.concat(newObject)
+
+  const response = axios
+                    .patch(`${baseUrl}/${id}`, {ingredients:ingredientPatch(items[id-1].ingredients, newObject)})
   console.log(response)
-  return response.then(response => response.data)
+  return response.then(response => response.data.ingredients)
 }
 
 const services = {
