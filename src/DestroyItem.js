@@ -8,7 +8,7 @@ const DestroyItem = ( {item_id, items, setItems, forceUpdate} ) => {
     const msg = `Do you really want to delete this?`
 
     if (window.confirm(msg) === true) {
-      const deleteItem = () => {
+      const destroyItemHook = () => {
         restaurantService
           .destroyMenuItem(item_id)
           .then(destroyedItem => {
@@ -16,7 +16,7 @@ const DestroyItem = ( {item_id, items, setItems, forceUpdate} ) => {
             forceUpdate()
           })
       }
-      deleteItem()
+      destroyItemHook()
     }
   }
 

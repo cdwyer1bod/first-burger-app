@@ -24,11 +24,18 @@ const destroyMenuItem = (id) => {
   return axios.delete(`${baseUrl}/${id}`)
 }
 
+const destroyIngredientItem = (id, ingr_id, items) => {
+  const response = axios.patch(`${baseUrl}/${id}`, {ingredients:items[id-1].ingredients.filter(i => i.id !== ingr_id)})
+  console.log(response)
+  return(response.then(response => response.data.ingredients))
+}
+
 const services = {
   getAll,
   createMenuItem,
   createIngredientItem,
-  destroyMenuItem
+  destroyMenuItem,
+  destroyIngredientItem
  }
 
 export default services
