@@ -13,10 +13,10 @@ const createMenuItem = (newObject) => {
   return response.then(response => response.data)
 }
 
-const createIngredientItem = (menuItem_id, newObject) => {
-  const response = axios.post('http://localhost:3001/restaurant/1', newObject)
-  console.log(axios.post('http://localhost:3001/restaurant/1', 1))
-  return response.then(response => response.data.ingredients)
+const createIngredientItem = (id, newObject) => {
+  const response = axios.post(`${baseUrl}/${id}`, newObject)
+  console.log(response)
+  return response.then(response => response.data)
 }
 
 const services = {

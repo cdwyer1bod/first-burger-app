@@ -14,7 +14,7 @@ const App = () => {
     const dataHook = () => {
       restaurantService.getAll().then(initialItems => setItems(initialItems))
     }
-    var x = axios.post('http://localhost:3001/restaurant/1').then(response=>response.data.ingredients)
+    var x = axios.get('http://localhost:3001/restaurant/1').then(response=>response.data.ingredients)
     console.log(x)
     dataHook()
 
