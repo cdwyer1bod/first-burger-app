@@ -61,12 +61,6 @@
           "quantity": 1
         }
       ]
-    },
-    {
-      "id": 3,
-      "price": "14",
-      "meal": "Reuben Sandwich",
-      "ingredients": []
     }
   ]
 }
