@@ -1,4 +1,5 @@
 import React from 'react';
+import restaurantService from './services'
 
 const DestroyItem = ( {item_id, items, setItems, forceUpdate} ) => {
 
@@ -7,12 +8,15 @@ const DestroyItem = ( {item_id, items, setItems, forceUpdate} ) => {
     const msg = `Do you really want to delete this?`
 
     if (window.confirm(msg) === true) {
-      var copy_data = items
-      copy_data = copy_data.filter(i => i.id !== item_id)
-      console.log(copy_data)
-
-      setItems(copy_data)
-      forceUpdate()
+      const deleteItem = () => {
+        restaurantService
+          .destroyMenuItem(item_id)
+          .then(destroyedItem => {
+            setItems(items.filter(i => i.id !== item_id))
+            forceUpdate()
+          })
+      }
+      deleteItem()
     }
   }
 

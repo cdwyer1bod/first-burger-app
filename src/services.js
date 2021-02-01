@@ -14,19 +14,21 @@ const createMenuItem = (newObject) => {
 }
 
 const createIngredientItem = (id, newObject, items) => {
-
-  const ingredientPatch = (ingredientList, newObject) => ingredientList.concat(newObject)
-
   const response = axios
-                    .patch(`${baseUrl}/${id}`, {ingredients:ingredientPatch(items[id-1].ingredients, newObject)})
+                    .patch(`${baseUrl}/${id}`, {ingredients:items[id-1].ingredients.concat(newObject)})
   console.log(response)
   return response.then(response => response.data.ingredients)
+}
+
+const destroyMenuItem = (id) => {
+  return axios.delete(`${baseUrl}/${id}`)
 }
 
 const services = {
   getAll,
   createMenuItem,
-  createIngredientItem
+  createIngredientItem,
+  destroyMenuItem
  }
 
 export default services
