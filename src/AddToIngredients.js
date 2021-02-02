@@ -42,22 +42,28 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
 
   const updateIngredientCost = (event) => {
 	  event.preventDefault()
-	  var id_selected = ingredients.filter(ingredient => ingredient.name === updatedIngredientName)[0].id
+	  var ingr_id = ingredients.filter(ingredient => ingredient.name === updatedIngredientName)[0].id
 	  const updatedIngredientObject = {
-		  id: ingredients.filter(ingredient => ingredient.name === updatedIngredientName)[0].id,
+		  id: ingr_id,
 		  name: updatedIngredientName,
 		  cost: Number(updatedIngredientCost),
       quantity: Number(updatedIngredientQuantity)
 	  }
-	  setItems(items)
-	  setUpdatedIngredientName('')
-	  setUpdatedIngredientCost('')
-    setUpdatedIngredientQuantity('')
 
-	  ingredients[id_selected-1].cost = updatedIngredientObject.cost
-    ingredients[id_selected-1].quantity = updatedIngredientObject.quantity
+    const updateIngredientInformationHook = () => {
+      restaurantService
+        .updateIngredientInformation(id, ingr_id, items, updatedIngredientObject.cost, updatedIngredientObject.quantity)
+        .then(ingredients => {
+          items[id-1].ingredients = ingredients
+          setItems(items)
+      	  setUpdatedIngredientName('')
+      	  setUpdatedIngredientCost('')
+          setUpdatedIngredientQuantity('')
+          forceUpdate()
+        })
+    }
 
-	  forceUpdate()
+    updateIngredientInformationHook()
 
   }
 
