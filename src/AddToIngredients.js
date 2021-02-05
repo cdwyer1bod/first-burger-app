@@ -3,9 +3,12 @@ import restaurantService from './services'
 
 const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => {
 
+  const quantityTypes = ['g', 'mL', 'units']
+
   const [ newIngredientName, setNewIngredientName ] = useState('')
   const [ newIngredientCost, setNewIngredientCost ] = useState('')
   const [ newIngredientQuantity, setNewIngredientQuantity ] = useState('')
+  const [ newQuantityType, setNewQuantityType ] = useState('')
   const [ updatedIngredientName, setUpdatedIngredientName ] = useState('')
   const [ updatedIngredientCost, setUpdatedIngredientCost ] = useState('')
   const [ updatedIngredientQuantity, setUpdatedIngredientQuantity ] = useState('')
@@ -16,6 +19,7 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
       id: ingredients.length + 1,
       name: newIngredientName,
       cost: newIngredientCost,
+      quantityType: newQuantityType,
       quantity: newIngredientQuantity
     }
 
@@ -28,6 +32,7 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
         setItems(items)
         setNewIngredientName('')
     	  setNewIngredientCost('')
+        setNewQuantityType('')
         setNewIngredientQuantity('')
         forceUpdate()
       })
@@ -37,8 +42,6 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
     ingredientAdd()
 
   }
-
-
 
   const updateIngredientCost = (event) => {
 	  event.preventDefault()
@@ -64,12 +67,12 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
     }
 
     updateIngredientInformationHook()
-
   }
 
   const handleNewIngredientNameChange = (event) => setNewIngredientName(event.target.value)
   const handleNewIngredientCostChange = (event) => setNewIngredientCost(event.target.value)
   const handleNewIngredientQuantityChange = (event) => setNewIngredientQuantity(event.target.value)
+  const handleNewQuantityType = (event) => setNewQuantityType(event.target.value)
   const handleUpdatedIngredientNameChange = (event) => setUpdatedIngredientName(event.target.value)
   const handleUpdatedIngredientCostChange = (event) => setUpdatedIngredientCost(event.target.value)
   const handleUpdatedIngredientQuantityChange = (event) => setUpdatedIngredientQuantity(event.target.value)
@@ -97,6 +100,16 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
         onChange={handleNewIngredientQuantityChange}
         />
 
+        <select
+          value={newQuantityType}
+          onChange={handleNewQuantityType}
+        >
+          <option> Select Type </option>
+          {quantityTypes.map(type => {return(
+          <option> {type} </option>
+           )})}
+        </select>
+
         <button type="submit">Add Ingredient</button>
       </form>
 
@@ -104,10 +117,20 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
     <form onSubmit={updateIngredientCost}>
 
       <label>Name: </label>
-      <input
-      value={updatedIngredientName}
-      onChange={handleUpdatedIngredientNameChange}
-      />
+
+      <select
+        value={updatedIngredientName}
+        onChange={handleUpdatedIngredientNameChange}
+      >
+        <option> Select Ingredient </option>
+        {ingredients.map(ingredient => {return(
+        <option key={ingredient.id} value={ingredient.name}>{ingredient.name}
+        {console.log(updatedIngredientName)}
+        </option>
+         )})}
+
+      </select>
+
 
       <label>Cost: </label>
       <input

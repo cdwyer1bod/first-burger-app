@@ -61,7 +61,7 @@ const Recipes = ( { item, items, setItems } ) => {
                 {<DestroyIngredients ingredients={item.ingredients} id={item.id} items={items}
                 setItems={setItems} forceUpdate={forceUpdate} ingr_id={ingredient.id}/>}
 
-                {ingredient.name} x {ingredient.quantity}: ${twoDP(ingredient.cost)}
+                {ingredient.name} x {ingredient.quantity} ({ingredient.quantityType}): ${twoDP(ingredient.cost)}
               </li> )}
             )}
           </ul>
