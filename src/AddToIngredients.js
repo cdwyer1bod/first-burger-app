@@ -125,7 +125,6 @@ const AddToIngredients = ( {ingredients, id, items, setItems, forceUpdate} ) => 
         <option> Select Ingredient </option>
         {ingredients.map(ingredient => {return(
         <option key={ingredient.id} value={ingredient.name}>{ingredient.name}
-        {console.log(updatedIngredientName)}
         </option>
          )})}
 

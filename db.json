@@ -9,24 +9,28 @@
           "id": 1,
           "name": "Cheese",
           "cost": 1.5,
+          "quantityType": "g",
           "quantity": 1
         },
         {
           "id": 2,
           "name": "Tomato",
-          "cost": 1.25,
+          "cost": 1,
+          "quantityType": "g",
           "quantity": 1
         },
         {
           "id": 3,
           "name": "Onion",
           "cost": 0.75,
+          "quantityType": "g",
           "quantity": 1
         },
         {
           "id": 4,
           "name": "Beef Patty",
           "cost": 3.75,
+          "quantityType": "g",
           "quantity": 1
         }
       ]
@@ -40,24 +44,28 @@
           "id": 1,
           "name": "Cheese",
           "cost": 1.5,
+          "quantityType": "g",
           "quantity": 1
         },
         {
           "id": 2,
           "name": "Tomato",
           "cost": 1,
+          "quantityType": "g",
           "quantity": 1
         },
         {
           "id": 3,
           "name": "Onion",
           "cost": 0.75,
+          "quantityType": "g",
           "quantity": 1
         },
         {
           "id": 4,
           "name": "Beef Patty",
           "cost": 3.75,
+          "quantityType": "g",
           "quantity": 1
         }
       ]
