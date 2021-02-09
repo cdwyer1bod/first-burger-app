@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Recipes from './Recipes'
 import restaurantService from './services'
-import axios from 'axios'
 
 const App = () => {
 
@@ -14,8 +13,7 @@ const App = () => {
     const dataHook = () => {
       restaurantService.getAll().then(initialItems => setItems(initialItems))
     }
-    var x = axios.get('http://localhost:3001/restaurant/1').then(response=>response.data.ingredients)
-    console.log(x)
+
     dataHook()
 
   }, []);
@@ -79,7 +77,6 @@ const App = () => {
     </div>
   )
 }
-
 
 ReactDOM.render(<App />,
   document.getElementById('root')
