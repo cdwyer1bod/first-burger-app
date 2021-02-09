@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import AddToIngredients from './AddToIngredients'
 import DestroyIngredients from './DestroyIngredients'
 import DestroyItem from './DestroyItem'
+import restaurantService from './services'
 
 const Recipes = ( { item, items, setItems } ) => {
 
@@ -17,17 +18,18 @@ const Recipes = ( { item, items, setItems } ) => {
   const forceUpdate = useForceUpdate();
 
   const updateItemPrice = (event) => {
-  	event.preventDefault()
-  	const updatedItemPriceObject = {
-  		id: item.id,
-  		meal: item.meal,
-  		price:Number(updatedItemPrice),
-  		ingredients:item.ingredients,
-	   }
+    event.preventDefault()
 
-	items[item.id-1] = updatedItemPriceObject
-	setUpdatedItemPrice('')
-	forceUpdate()
+    const updateItemPriceHook = () => {
+     restaurantService
+      .updateMenuItemPrice(item.id, updatedItemPrice)
+      .then(newPrice => {
+        items[item.id-1].price = newPrice
+        setUpdatedItemPrice('')
+      })
+    }
+
+    updateItemPriceHook()
   }
 
 	const handleItemPriceChange = (event) => setUpdatedItemPrice(event.target.value)
@@ -59,7 +61,7 @@ const Recipes = ( { item, items, setItems } ) => {
                 {<DestroyIngredients ingredients={item.ingredients} id={item.id} items={items}
                 setItems={setItems} forceUpdate={forceUpdate} ingr_id={ingredient.id}/>}
 
-                {ingredient.name} x {ingredient.quantity}: ${twoDP(ingredient.cost)}
+                {ingredient.name} x {ingredient.quantity} ({ingredient.quantityType}): ${twoDP(ingredient.cost)}
               </li> )}
             )}
           </ul>
